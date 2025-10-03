@@ -2,9 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
-app.use(cors({ origin: '*' })); // Or specify your frontend URL, e.g., 'https://your-frontend.vercel.app'
+
 const app = express();
 connectDB();
+app.use(cors({ origin: '*' })); // Or specify your frontend URL, e.g., 'https://your-frontend.vercel.app'
 app.use(express.json());
 
 app.use('/api/plants', require('./routes/plants'));
