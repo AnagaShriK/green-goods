@@ -17,7 +17,7 @@ function Register() {
 
   useEffect(() => {
   if (userInfo) {
-    navigate('/search');   // ✅ send user to search page
+    navigate('/search'); \
   }
 }, [userInfo, navigate]);
 
@@ -25,7 +25,7 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
-    dispatch(register({ name, email, password })); // ✅ pass as object
+    dispatch(register({ name, email, password })); 
   };
 
   return (
