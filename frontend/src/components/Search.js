@@ -2,6 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/slices/productSlice';
 import { addToCart } from '../store/slices/cartSlice';
+import plantPlaceholder from '../aloe.jpg';
+import snakeImg from '../snake.jpg';
+import peaceImg from '../peace.jpg';
+import cactusImg from '../cactus.jpg';
+import fernImg from '../fern.jpg';
+import spiderImg from '../spider.jpg';
+
+// map normalized plant names to local images
+const plantImageMap = {
+  'aloe vera': plantPlaceholder,
+  'snake plant': snakeImg,
+  'peace lily': peaceImg,
+  'cactus': cactusImg,
+  'fern': fernImg,
+  'spider plant': spiderImg,
+};
 
 function Search() {
   const dispatch = useDispatch();
@@ -20,7 +36,12 @@ function Search() {
         {items.map((plant) => (
           <div key={plant._id} className="col-md-4 mb-4">
             <div className="card h-100 shadow-sm">
-              <img src={plant.image || 'https://via.placeholder.com/150'} alt={plant.name} className="card-img-top" />
+              {(() => {
+                const nameKey = (plant.name || '').toLowerCase().trim();
+                const localImg = plantImageMap[nameKey];
+                const imgSrc = plant.image || localImg || plantPlaceholder;
+                return <img src={imgSrc} alt={plant.name} className="card-img-top" style={{height: '180px', objectFit: 'cover'}} />;
+              })()}
               <div className="card-body text-center">
                 <h5>{plant.name}</h5>
                 <p>₹{plant.price}</p>
