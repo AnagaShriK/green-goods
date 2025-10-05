@@ -13,11 +13,11 @@ function Register() {
 
 
   const dispatch = useDispatch();
-  const { userInfo, error: reduxError } = useSelector(state => state.user); // corrected
+  const { userInfo, error: reduxError } = useSelector(state => state.user); 
 
   useEffect(() => {
   if (userInfo) {
-    navigate('/search'); \
+    navigate('/search'); 
   }
 }, [userInfo, navigate]);
 
