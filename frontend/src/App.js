@@ -13,7 +13,7 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Hero />} />      {/* ✅ Hero first */}
+        <Route path="/" element={<Hero />} />   
         <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
