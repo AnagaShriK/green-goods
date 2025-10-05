@@ -1,7 +1,19 @@
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 
-function NavBar({ userInfo, handleLogout }) {
+function NavBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userInfo } = useSelector(state => state.user || {});
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -31,6 +43,5 @@ function NavBar({ userInfo, handleLogout }) {
     </Navbar>
   );
 }
-
 
 export default NavBar;
