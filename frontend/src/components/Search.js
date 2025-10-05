@@ -2,21 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/slices/productSlice';
 import { addToCart } from '../store/slices/cartSlice';
-import plantPlaceholder from '../aloe.jpg';
-import snakeImg from '../snake.jpg';
-import peaceImg from '../peace.jpg';
-import cactusImg from '../cactus.jpg';
-import fernImg from '../fern.jpg';
-import spiderImg from '../spider.jpg';
-
-// map normalized plant names to local images
+// use public images (place these files under frontend/public/images/)
 const plantImageMap = {
-  'aloe vera': plantPlaceholder,
-  'snake plant': snakeImg,
-  'peace lily': peaceImg,
-  'cactus': cactusImg,
-  'fern': fernImg,
-  'spider plant': spiderImg,
+  'aloe vera': `${process.env.PUBLIC_URL}/aloe.jpg`,
+  'snake plant': `${process.env.PUBLIC_URL}/snake.jpg`,
+  'peace lily': `${process.env.PUBLIC_URL}/peace.jpg`,
 };
 
 function Search() {
@@ -39,7 +29,7 @@ function Search() {
               {(() => {
                 const nameKey = (plant.name || '').toLowerCase().trim();
                 const localImg = plantImageMap[nameKey];
-                const imgSrc = plant.image || localImg || plantPlaceholder;
+                const imgSrc = plant.image || localImg || `${process.env.PUBLIC_URL}/images/aloe.jpg`;
                 return <img src={imgSrc} alt={plant.name} className="card-img-top" style={{height: '180px', objectFit: 'cover'}} />;
               })()}
               <div className="card-body text-center">
